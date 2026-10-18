@@ -5,3 +5,4 @@ dist
 .amp/in
 .amp/portals/
 supabase/.temp/
+.vercel
