@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Prepares a fresh Amp orb for StreetWatch. Idempotent; safe to rerun on a warm snapshot.
+#
+# The app needs VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY. In orbs they come from the
+# StreetWatch project's environment variables; locally, copy .env.example to .env.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+step() { printf '\n==> %s\n' "$1"; }
+
+step "Installing npm dependencies (React app + Supabase CLI)"
+time npm install --no-audit --no-fund
+
+step "Checking tools"
+node --version
+npx --no-install supabase --version
